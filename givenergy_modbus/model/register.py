@@ -18,6 +18,14 @@ class Converter:
             return int(val)
 
     @staticmethod
+    def int16(val: int) -> int:
+        """Interpret as a 16-bit integer register value."""
+        if val is not None:
+            if val & (1 << (16 - 1)):
+                val -= 1 << 16
+            return val
+
+    @staticmethod
     def duint8(val: int, *idx: int) -> int:
         """Split one register into two unsigned 8-bit ints and return the specified index."""
         if val is not None:
